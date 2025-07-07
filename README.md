@@ -1,7 +1,7 @@
 # Social-media-pipeline
 
 
-## 🚀 Project Overview
+##  Project Overview
 
 This project aims to create an **end-to-end data pipeline** to transform batch raw social media data into meaningful insights to support **business intelligence**, **reporting**, and **advanced analytics**.
 
@@ -28,7 +28,7 @@ The pipeline facilitates the **ingestion**, **processing**, **storage**, and **a
 
 ---
 
-## 🧱 Architecture and Design
+## Architecture and Design
 
 This pipeline consists of **5 main phases**:
 
