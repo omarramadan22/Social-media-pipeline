@@ -1,74 +1,94 @@
 # Social-media-pipeline
 
-Project Overview :
-This project aims to create an end to end pipeline to transform batch raw social media data into meaningful insights to support business intelligence, reporting, and advanced analytics. The pip0eline will facilitate the ingestion, processing, storage, and analysis of data from multiple sources, ensuring data integrity, scalability, and accessibility.
 
-The  objectives:
+## 🚀 Project Overview
 
-1- Develop a robust data ingestion pipeline that can handle batch data from  sources .
-2- Implement data processing workflows to transform raw data into structured formats, making it suitable for analysis and reporting.
-3- Establish a data warehouse using PostgreSQL to serve as a centralized repository for business intelligence and reporting.
-4- Provide actionable insights and reports to business teams, 
+This project aims to create an **end-to-end data pipeline** to transform batch raw social media data into meaningful insights to support **business intelligence**, **reporting**, and **advanced analytics**.
 
-Tools and Technologies :
-Apache Spark: Data processing, transformation, and analysis
-PostgreSQL: Data warehousing and SQL-based querying
-DBT: creating data marts and models by applying transformations and aggregations 
-Power BI : creating a dashboard to serve business needs 
-Docker: Containerization for consistent and isolated environments
-
-
-Architecture and Design : 
- 
-
--So in this document I will clarify each phase of the pipeline that consists of 5 phases : 
-
-1 – Ingesting from data source :
-
--The data comes from its source in a json format (semi – structured )
-And it has nested json objects , so each main object represents user and inside this object we can find another objects for posts related to that user and inside each post object we can find another objects for each comment related to that post 
--I used pyspark to ingest the data from this json file in its raw format and saving it in an initial structured data frame 
-
-2- data validations and cleansing :
-
--extracting a data frame for each entity from the initial data frame 
-
--applying validation on user email data to  make sure that there is no data entry issue 
-
--filling null values with another values based on the field data type and meaning 
-
--extracting a field for each reaction type from one reactions field which has list of values 
-
-- adding total reactions field to calculate the total sum of reactions
-- 
--extracting dates from timestampe fields to be easier to use in analytics 
+The pipeline facilitates the **ingestion**, **processing**, **storage**, and **analysis** of data from multiple sources — ensuring **data integrity**, **scalability**, and **accessibility**.
 
 
 
-3 – data warehouse design :
+##  Objectives
 
-The chosen data warehouse design here is a star schema with one fact table and three dimensions 
-Each record of interaction fact table represents each comment on each post 
-If the post does not have any comment so it will be represented by only one record in the fact table 
-If the post has multiple comments so it will have multiple records ( record for each comment ) 
--users dimension for additional users data
--posts dimension for additional posts data
--comments dimension for additional comments data
+1. Develop a robust data ingestion pipeline that can handle batch data from sources.
+2. Implement data processing workflows to transform raw data into structured formats, making it suitable for analysis and reporting.
+3. Establish a data warehouse using PostgreSQL to serve as a centralized repository for business intelligence and reporting.
+4. Provide actionable insights and reports to business teams.
 
- 
+---
 
- 4- data marts for analytics :
- 
--creating 6 data marts and models using DBT for analytical purposes :
-1-top users getting reactions on posts 
-2- top users getting comments on posts
-3-  tags in posts getting top total reactions 
-4- tags in posts getting top love reactions
-5- tags in posts getting top  angry reactions
-6-top locations by total posts count
+##  Tools and Technologies
+
+- **Apache Spark**: Data processing, transformation, and analysis  
+- **PostgreSQL**: Data warehousing and SQL-based querying  
+- **dbt**: Creating data marts and models by applying transformations and aggregations  
+- **Power BI**: Creating a dashboard to serve business needs  
+- **Docker**: Containerization for consistent and isolated environments  
+
+---
+
+## 🧱 Architecture and Design
+
+This pipeline consists of **5 main phases**:
+
+---
+
+###  1 – Ingesting from Data Source
+
+- The data comes in a **JSON format** (semi-structured), with nested JSON objects:
+  - Each main object represents a **user**
+  - Inside each user: a list of **posts**
+  - Inside each post: a list of **comments**
+- **PySpark** was used to:
+  - Ingest the raw JSON
+  - Flatten and structure the nested data into an initial DataFrame
+
+---
+
+### 2 – Data Validation and Cleansing
+
+- Extracted a DataFrame for each entity from the initial structured data
+- Applied validations on:
+  - **User emails** to ensure data integrity
+  - **Null values** filled based on field data type and business logic
+- Extracted fields:
+  - **Individual reaction types** from nested lists
+  - **Total reactions** by summing all reaction types
+- Extracted **dates** from timestamp fields for easier analytics
+
+---
+
+###  3 – Data Warehouse Design (PostgreSQL)
+
+- Used **Star Schema** design:
+  - **1 fact table**: `interaction_fact`
+  - **3 dimension tables**: `users_dimension`, `posts_dimension`, `comments_dimension`
+- Fact table logic:
+  - One record for each **comment on a post**
+  - If a post has no comments, it's still represented once in the fact table
+
+---
+
+###  4 – Data Marts for Analytics (via dbt)
+
+Created **6 dbt models** to support key analytics:
+
+1. Top users getting **reactions** on posts  
+2. Top users getting **comments** on posts  
+3. Top **tags** by total reactions  
+4. Top **tags** by love reactions  
+5. Top **tags** by angry reactions  
+6. Top **locations** by total post count  
+
+---
+
+###  5 – Dashboard (Final Layer)
+
+- Built using **Power BI**
+- Connected to **PostgreSQL**
+- Provides clear, actionable **insights** to the business team based on data marts
 
 
-5 – dashboard ( final layer )  :
 
--Creating a dashboard to serve business needs using Power BI 
- 
+
