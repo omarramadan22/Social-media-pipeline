@@ -28,7 +28,8 @@ The pipeline facilitates the **ingestion**, **processing**, **storage**, and **a
 
 ---
 
-## Architecture and Design
+## Architecture and Design :
+![Pipeline Diagram](sociel media pipeline.png)
 
 This pipeline consists of **5 main phases**:
 
