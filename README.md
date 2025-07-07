@@ -32,10 +32,15 @@ And it has nested json objects , so each main object represents user and inside 
 2- data validations and cleansing :
 
 -extracting a data frame for each entity from the initial data frame 
+
 -applying validation on user email data to  make sure that there is no data entry issue 
+
 -filling null values with another values based on the field data type and meaning 
+
 -extracting a field for each reaction type from one reactions field which has list of values 
-- adding total reactions field to calculate the total sum of reactions 
+
+- adding total reactions field to calculate the total sum of reactions
+- 
 -extracting dates from timestampe fields to be easier to use in analytics 
 
 
