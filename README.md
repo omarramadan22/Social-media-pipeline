@@ -69,6 +69,7 @@ This pipeline consists of **5 main phases**:
   - One record for each **comment on a post**
   - If a post has no comments, it's still represented once in the fact table
 
+![data warehouse design](https://github.com/omarramadan22/Social-media-pipeline/blob/main/social_media_pipeline_ERD.png)
 ---
 
 ###  4 – Data Marts for Analytics (via dbt)
@@ -91,5 +92,5 @@ Created **6 dbt models** to support key analytics:
 - Provides clear, actionable **insights** to the business team based on data marts
 
 
-
+![dashboard](https://github.com/omarramadan22/Social-media-pipeline/blob/main/social_media_dashboard.PNG)
 
